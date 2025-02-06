@@ -1,39 +1,37 @@
+
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const perfil = sequelize.define('perfil', {
+const usuario = sequelize.define('usuario', {
     ID:{
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    direccion:{
+
+    nombre:{
         type: DataTypes.STRING,
         allowNull: false,
-        require: false,
+        require: true,
         validate:{
             len: [1,100]
         }
     },
-    telefono:{
+    email:{
         type: DataTypes.STRING,
         allowNull: false,
-        require: false,
+        require: true,
+        unique: true,
         validate:{
-            len: [10,15]
+            isEmail: true
         }
     },
-    fecha:{
-        type: DataTypes.DATEONLY,
-        defaultValue: DataTypes.NOW,
-        require: false
-    },
-    fotoPerfil:{
+    password:{
         type: DataTypes.STRING,
         allowNull: false,
-        require: false,
+        require: true,
         validate:{
-            isURL: true
+            len: [8]
         }
     }
 }, { 

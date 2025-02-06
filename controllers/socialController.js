@@ -9,7 +9,11 @@ module.exports = {
 
     
     async getUsuarioPorId(req,res){
-        const usuario = await Usuario.findByPk(req.params.id, {include: [{model: Perfil, where: {ID: req.params.id}}]});
+        const usuario = await Usuario.findByPk(req.params.id, {
+            include: 
+            [{model: Perfil, 
+                where: {ID: req.params.id}}]
+            });
         if(!usuario){
             return res.status(404).json({message: 'Usuario no encontrado'});
         }
