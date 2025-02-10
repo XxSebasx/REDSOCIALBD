@@ -20,13 +20,22 @@
     </form>
 
     <form id="formularioPerfil">
-        <input placeholder="id Usuario" id="usuarioID">
         <input placeholder="direccion" id="direccion">
         <input placeholder="telefono" id="telefono">
         <input placeholder="fecha" id="fecha">
         <input placeholder="fotoPerfil" id="fotoPerfil">
         <button type="submit">add</button>
     </form>
+
+    <h3>Actualizar perfil</h3>
+    <input placeholder="id" id="putID">
+    <input placeholder="direccion" id="putDireccion">
+    <input placeholder="telefono" id="putTelefono">
+    <input placeholder="fecha" id="putFecha">
+    <input placeholder="fotoPerfil" id="putFotoPerfil">
+    <button type="button" id="actualizarPerfil">Actualizar</button>
+
+
 
     <h3>Mostrar uusario</h3>
     <input placeholder="id" id="getUsuarioID">
@@ -42,6 +51,10 @@
     <input placeholder="id Perfil" id="putPerfil">
     <input placeholder="id Usuario" id="putUsuario">
     <button type="button" id="actualizar">Reasignar</button>
+
+    <h3>Opciones avanzadas</h3>
+    <button type="button" id="mostrarUsuariosConPerfil">Mostrar usuarios con perfiles</button>
+    <button type="button" id="mostrarUsuariosSinPerfil">Mostrar usuarios sin perfiles</button>
 
     <script src="script.js"></script>
 </body>

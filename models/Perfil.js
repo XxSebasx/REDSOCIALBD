@@ -9,7 +9,6 @@ const perfil = sequelize.define('perfil', {
     },
     usuarioID:{
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
             model: 'usuarios',
             key: 'ID'

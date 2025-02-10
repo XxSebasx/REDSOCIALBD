@@ -55,9 +55,8 @@ module.exports = {
   },
 
   async createPerfil(req, res) {
-    const { usuarioID, direccion, telefono, fecha, fotoPerfil } = req.body;
+    const {direccion, telefono, fecha, fotoPerfil } = req.body;
     const perfil = await Perfil.create({
-      usuarioID,
       direccion,
       telefono,
       fecha,
@@ -66,7 +65,7 @@ module.exports = {
     res.json(perfil);
   },
 
-  async updatePerfil(req, res) {
+  async asignarPerfil(req, res) {
     const idPerfil = req.params.id;
     const idUsuario = req.body.ID;
     const perfil = await Perfil.findByPk(idPerfil);
@@ -81,5 +80,41 @@ module.exports = {
     const perfil = await Perfil.findByPk(req.params.id);
     await perfil.destroy();
     res.json({ message: "Perfil eliminado" });
+  },
+
+  async updatePerfil(req, res) {
+    const perfil = await Perfil.findByPk(req.params.id);
+    const { direccion, telefono, fecha, fotoPerfil } = req.body;
+    await perfil.update({ direccion, telefono, fecha, fotoPerfil });
+    res.json(perfil);
+  },
+
+  async getUsuariosConPerfil(req, res) {
+    const usuarios = await Usuario.findAll({
+      include: [{ model: Perfil, required: true }],
+    });
+    res.json(usuarios);
+  },
+
+  
+  async getUsuariosSinPerfil(req, res) {
+    let usuarios;
+    try {
+      usuarios = await Usuario.findAll({
+        include: [{ model: Perfil, required: false }
+        ]
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    let usuariosSinPerfil = [];
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].perfils.length == 0) {
+        usuariosSinPerfil.push(usuarios[i]);
+      }
+    }
+   
+    res.json(usuariosSinPerfil);
   },
 };
