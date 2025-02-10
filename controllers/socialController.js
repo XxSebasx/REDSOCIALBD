@@ -7,6 +7,15 @@ module.exports = {
     res.json(usuarios);
   },
 
+  async getPerfiles(req,res){
+    const perfiles = await Perfil.findAll(
+      {
+        model: Usuario
+      }
+    );
+    res.json(perfiles);
+  },
+
   async getUsuarioPorId(req, res) {
     const usuario = await Usuario.findByPk(req.params.id, {
       include: [{ model: Perfil, where: { usuarioID: req.params.id } }],
@@ -33,9 +42,6 @@ module.exports = {
     const perfil = await Perfil.findByPk(req.params.id, {
       include: [{ model: Usuario, where: { ID: req.params.id } }],
     });
-    if (!perfil) {
-      return res.status(404).json({ message: "Perfil no encontrados" });
-    }
     res.json(perfil);
   },
 
@@ -62,7 +68,6 @@ module.exports = {
       fecha,
       fotoPerfil,
     });
-    res.json(perfil);
   },
 
   async asignarPerfil(req, res) {
@@ -117,4 +122,9 @@ module.exports = {
    
     res.json(usuariosSinPerfil);
   },
+
+
+
+
+
 };

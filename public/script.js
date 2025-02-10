@@ -22,6 +22,8 @@ document
 
 getUsers();
 
+getPerfiles();
+
 async function addUser(event) {
   event.preventDefault();
   const nombre = document.getElementById("name").value;
@@ -45,11 +47,18 @@ async function addUser(event) {
 
 async function getUsers() {
   const response = await fetch("/usuarios");
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
   const usuarios = await response.json();
   console.log(usuarios);
+  let tabla = document.getElementById("tablaUsuario");
+  let filas = ""
+  for (let i = 0; i < usuarios.length; i++) {
+    let user = usuarios[i];
+    let fila = `<tr><td>${user.ID}</td><td>${user.nombre}</td>
+    <td>${user.email}</td><td>${user.password}</td>
+    </tr>`;
+    filas+= fila
+  }
+  tabla.innerHTML = filas;
 }
 
 async function getUser() {
@@ -87,6 +96,7 @@ async function createPerfil(event) {
   if (response.ok) {
     const perfil = await response.json();
     console.log(perfil);
+    getPerfiles();
   }
 }
 
@@ -215,6 +225,29 @@ async function getUsuariosSinPerfil() {
   if(response.ok){
     const result = await response.json();
     console.log(result)
+  }
+}
+
+async function getPerfiles() {
+  const response = await fetch("/perfiles",{
+    method: "GET",
+    headers:{
+      "Content-Type": "application/json"
+    }
+  });
+
+  if(response.ok){
+    const result = await response.json();
+    let tabla = document.getElementById("tablaPerfil");
+    let filas = "";
+    for (let i = 0; i < result.length; i++) {
+      let perfil = result[i];
+      let fila = `<tr><td>${perfil.ID}</td><td>${perfil.usuarioID}</td>
+      <td>${perfil.direccion}</td><td>${perfil.telefono}</td>
+      <td>${perfil.fecha}</td><td>${perfil.fotoPerfil}</td></tr>`;
+      filas+= fila
+    }
+    tabla.innerHTML = filas;
   }
 }
 

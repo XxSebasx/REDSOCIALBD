@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h3>Crear usuario</h3>
     <form id="formularioUser">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -18,7 +19,19 @@
         <br>
         <button type="submit">add</button>
     </form>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>email</th>
+                <th>password</th>
+            </tr>
+        </thead>
+        <tbody id="tablaUsuario"></tbody>
+    </table>
 
+    <h3>Crear perfil</h3>
     <form id="formularioPerfil">
         <input placeholder="direccion" id="direccion">
         <input placeholder="telefono" id="telefono">
@@ -26,6 +39,21 @@
         <input placeholder="fotoPerfil" id="fotoPerfil">
         <button type="submit">add</button>
     </form>
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>usuarioID</th>
+                <th>direccion</th>
+                <th>telefono</th>
+                <th>fecha</th>
+                <th>fotoPerfil</th>
+            </tr>
+        </thead>
+        <tbody id="tablaPerfil"></tbody>
+    </table>
+
 
     <h3>Actualizar perfil</h3>
     <input placeholder="id" id="putID">
