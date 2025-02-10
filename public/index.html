@@ -16,13 +16,33 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required minlength="8">
         <br>
-        <input type="submit" value="Submit">
+        <button type="submit">add</button>
     </form>
-
 
     <form id="formularioPerfil">
-
+        <input placeholder="id Usuario" id="usuarioID">
+        <input placeholder="direccion" id="direccion">
+        <input placeholder="telefono" id="telefono">
+        <input placeholder="fecha" id="fecha">
+        <input placeholder="fotoPerfil" id="fotoPerfil">
+        <button type="submit">add</button>
     </form>
+
+    <h3>Mostrar uusario</h3>
+    <input placeholder="id" id="getUsuarioID">
+    <button type="button" id="mostrarUsuario">mostrar</button>
+    <button type="button" id="eliminarUsuario">Eliminar</button>
+
+    <h3>Mostrar perfiles</h3>
+    <input placeholder="id" id="getPerfilesID">
+    <button type="button" id="mostrarPerfil">mostrar</button>
+    <button type="button" id="eliminarPerfil">Eliminar</button>
+
+    <h3>Reasignar perfiles</h3>
+    <input placeholder="id Perfil" id="putPerfil">
+    <input placeholder="id Usuario" id="putUsuario">
+    <button type="button" id="actualizar">Reasignar</button>
+
     <script src="script.js"></script>
 </body>
 </html>
