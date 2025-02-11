@@ -50,4 +50,8 @@ const perfil = sequelize.define('perfil', {
     timestamps: false
 });
 
+sequelize.sync({ force: true }).then(() => {
+    console.log('Tabla Perfil sincronizada');
+});
+
 module.exports = perfil;

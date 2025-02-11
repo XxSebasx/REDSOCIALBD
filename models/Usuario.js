@@ -39,4 +39,9 @@ const usuario = sequelize.define('usuario', {
     timestamps: false
 });
 
+
+sequelize.sync({ force: true }).then(() => {
+    console.log('Tabla Usuario sincronizada');
+});
+
 module.exports = usuario;
